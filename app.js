@@ -25,7 +25,7 @@ const Schedule = require('./models/Schedule')
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const courses = require('./public/data/courses20-21.json')
+const courses = require('./public/data/courses21-22.json')
 
 
 // *********************************************************** //
@@ -323,7 +323,49 @@ app.post('/courses/byInst',
     res.render('courselist')
   }
 )
-
+app.post('/courses/byKeyword',
+  // show list of courses in a given keyword
+  async (req,res,next) => {
+    const {keyword} = req.body;
+    var regexp = new RegExp(keyword, "gi")
+    const courses = 
+    await Course
+            .find({name:regexp,independent_study:false})
+            .sort({term:1,num:1,section:1})
+ //res.json(courses)
+ res.locals.courses = courses
+ res.locals.times2str = times2str
+ res.render('courselist')
+  }
+)
+app.post('/courses/bySubject_max_limit',
+  // show list of courses in a given subject and enrollment limit
+  async (req,res,next) => {
+    const {subject,max_capacity} = req.body;
+    const courses = 
+    await Course
+            .find({subject:subject,limit:{$lte:max_capacity},independent_study:false})
+            .sort({term:1,num:1,section:1})
+ //res.json(courses)
+ res.locals.courses = courses
+ res.locals.times2str = times2str
+ res.render('courselist')
+  }
+)
+app.post('/courses/bySubject_min_limit',
+  // show list of courses in a given subject and enrollment limit
+  async (req,res,next) => {
+    const {subject,min_capacity} = req.body;
+    const courses = 
+    await Course
+            .find({subject:subject,limit:{$gte:min_capacity},independent_study:false})
+            .sort({term:1,num:1,section:1})
+ //res.json(courses)
+ res.locals.courses = courses
+ res.locals.times2str = times2str
+ res.render('courselist')
+  }
+)
 app.use(isLoggedIn)
 
 app.get('/addCourse/:courseId',
