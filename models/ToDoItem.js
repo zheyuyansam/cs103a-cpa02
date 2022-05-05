@@ -8,6 +8,7 @@ var toDoItemSchema = Schema( {
   title: String,
   description:String,
   completed: Boolean,
+  priority:Boolean,
   createdAt: Date,
 } );
 

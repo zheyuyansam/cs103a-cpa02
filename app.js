@@ -160,10 +160,10 @@ app.get('/todo',
   isLoggedIn,
   async (req,res,next) => {
     try{
-      const {title,description} = req.body; // get title and description from the body
+      const {title,description,priority} = req.body; // get title and description from the body
       const userId = res.locals.user._id; // get the user's id
       const createdAt = new Date(); // get the current date/time
-      let data = {title, description, userId, createdAt,} // create the data object
+      let data = {title, description,priority, userId, createdAt,} // create the data object
       let item = new ToDoItem(data) // create the database object (and test the types are correct)
       await item.save() // save the todo item in the database
       res.redirect('/todo')  // go back to the todo page

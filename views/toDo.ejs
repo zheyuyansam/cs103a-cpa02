@@ -5,16 +5,28 @@
     <hr>
     <ol>
         <% for (item of items){%>
-            <li class="mb-2">          
-                <b><%= item.title%>:</b><i><%= item.description %></i>
-                <% if (item.completed) {%>
-                    <a href="/todo/completed/false/<%= item._id%>">  Done</a>
+            <li class="mb-2">
+                <% if (item.priority) {%>          
+                    <p>High Priority</p><%= item.title%>:</b><i><%= item.description %></i>
+                    <% if (item.completed) {%>
+                        <a href="/todo/completed/false/<%= item._id%>">  Done</a>
+                    <% } else {%>
+                        <a href="/todo/completed/true/<%= item._id%>"> In Process</a>
+                    <% } %>
+                    <br>
+                    <%= item.createdAt %> 
+                    <a href="/todo/delete/<%= item._id%>">(delete)</a>
                 <% } else {%>
-                    <a href="/todo/completed/true/<%= item._id%>"> In Process</a>
+                    <b><%= item.title%>:</b><i><%= item.description %></i>
+                    <% if (item.completed) {%>
+                        <a href="/todo/completed/false/<%= item._id%>">  Done</a>
+                    <% } else {%>
+                        <a href="/todo/completed/true/<%= item._id%>"> In Process</a>
+                    <% } %>
+                    <br>
+                    <%= item.createdAt %> 
+                    <a href="/todo/delete/<%= item._id%>">(delete)</a>
                 <% } %>
-                <br>
-                <%= item.createdAt %> 
-                <a href="/todo/delete/<%= item._id%>">(delete)</a>
             </li>
         <% }%>
     </ol>
@@ -22,6 +34,7 @@
     <form method="post" action="/todo/add">
         title:<input type="text" name="title"><br>
         description:<input type="text" name="description"><br>
+        priority:<input type="checkbox" name="priority" value="true"><br>
         <input type="submit" value="Save Item"><br>
     </form>
     
