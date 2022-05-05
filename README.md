@@ -16,6 +16,7 @@ Also, you can create your own to-do list by adding title, description, and prior
 ![image](https://user-images.githubusercontent.com/62254256/166885468-c79da21e-68fd-4e22-a7f4-bb54be4493b2.png)
 
 How to start the app locally:
+
 1.clone this app to your desktop
 ```
 cd desktop
