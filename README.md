@@ -15,21 +15,21 @@ Then you can select courses you want to find and save it into your schedule!
 Also, you can create your own to-do list by adding title, description, and priority!
 ![image](https://user-images.githubusercontent.com/62254256/166885468-c79da21e-68fd-4e22-a7f4-bb54be4493b2.png)
 
-#How to start the app locally:
+How to start the app locally:
 1.clone this app to your desktop
-'''
+```
 cd desktop
 git clone https://github.com/zheyuyansam/cs103a-cpa02
-'''
+```
 2. cd to this app
-'''
+```
 cd cs103a-cpa02
-'''
+```
 3. install npm and start the app
-'''
+```
 npm install
 npm start
-'''
+```
 4. Open http://localhost:5000/
 
 
